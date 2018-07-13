@@ -8,30 +8,14 @@
 </form>
 
 <?php
+require_once "lib/functions.php";
 $tr = $_POST["rows"];
 $td = $_POST["cols"];
 
-for ($j=1;$j<=$tr;$j++)
-{
-    echo "<tr>";
-    if($j==1)
-    {
-        for ($i=1; $i<=$td; $i++)
-        {
-            echo "<td>" . $i . "</td>";
-        }
-    }
-    else
-    {
-        for ($i=1; $i<=$td; $i++)
-        {
-            echo "<td>".$i*$j."</td>";
-        }
-    }
-    echo "</tr>";
 
-}
 
+pifagor($td,$tr);
+pifagor(3,3);
 
 ?>
 
