@@ -45,3 +45,23 @@ function kosti()
 
     echo "Вам выпало число ".$sum;
 }
+
+// Подключение и работа с базой данных
+function db($sql)
+{
+
+
+    if(!$connection_id)
+    {
+        $connection_id = mysqli_connect("localhost","alexpsp",12345,"alexpsp");
+
+    }
+
+    if($sql)
+    {
+        $result = mysqli_query($connection_id,$sql);
+        return $result;
+    }
+
+
+}
