@@ -1,16 +1,39 @@
 <?php
+require_once "header.php";
+require_once "lib/functions.php";
 
-$good_login = "ivan";
-$good_password = 123;
+$salt1  = md5("часы");
+$salt2  = md5("идут");
 
-$login = "andrey";
-$pass = 123;
+$salt3 = md5("время");
+$salt4 = md5("секунда");
 
-if($good_login == $login OR $good_password == $pass)
+$login = md5($_POST['login']);
+$pass = md5($_POST['pass']);
+
+$user_login = md5($salt3.$login.$salt4);
+$user_pass = md5($salt1.$pass.$salt2);
+
+$result = db("SELECT * FROM users");
+
+while($row = mysqli_fetch_assoc($result))
 {
-    echo "Добро пожаловать";
+    $users[] = $row;
 }
-else
+
+
+foreach ($users as $v)
 {
-    echo "Ошибка авторизации";
+    if($v['login'] == $user_login AND $v['pass'] == $user_pass)
+    {
+        $_SESSION['loged'] = $v['name'];
+
+    }
+}
+
+
+if ($_SESSION['loged'])
+{
+    echo "Добро пожаловать, ".$_SESSION['loged'];
+    header('Refresh:2; url=index.php' );
 }

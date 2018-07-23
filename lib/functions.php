@@ -53,9 +53,15 @@ function db($sql)
 
     if(!$connection_id)
     {
-        $connection_id = mysqli_connect("localhost","alexpsp",12345,"alexpsp");
+        if($connection_id = mysqli_connect("localhost","alexpsp",12345,"alexpsp"))
+        {
+            mysqli_query($connection_id,"SET CHARACTER SET utf8");
+            //echo "Подключились к БД" ;
+        }
+
 
     }
+
 
     if($sql)
     {
