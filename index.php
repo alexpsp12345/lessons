@@ -15,22 +15,18 @@ echo $data['content']." ";
 }
 
 require_once "Auto.php";
+require_once "Truck.php";
+require_once "Bus.php";
 
-$car1 = new Auto();
-$car1->color = "чёрный";
-$car1->doors = 4;
-$car1->model = "Benz";
-$car1->speed = 220;
+$car1 = new Auto(4,"Benz","чёрный",220);
+$car2 = new Auto(2,"Porche","красный",220);
+$car3 = new Truck(2,"Volvo","Синий",180,5);
+$car4 = new Truck(2,"Man","Серый",180,4);
+$car5 = new Bus(4,"Scania","Коричневый",190,60);
 
-$car2 = new Auto();
-$car2->color = "красный";
-$car2->doors = 2;
-$car2->model = "Porche";
-$car2->speed = 220;
-
-echo $car1->model;
-$car1->go();
-
+echo "<br>Автомобилей: ".Auto::$col;
+echo "<br>Грузовиков: ".Truck::$col;
+echo "<br>Автобусов: ".Bus::$col;
 
 require_once "footer.php";
 
